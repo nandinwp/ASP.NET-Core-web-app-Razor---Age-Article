@@ -21,4 +21,41 @@ Este projeto é uma aplicação web simples desenvolvida com ASP.NET Core, Razor
    Banco de dados leve e eficiente para armazenar as respostas da pesquisa.
 * Bootstrap:
    Framework de front-end para um design moderno e responsivo.
-Como Executar
+# Como Executar
+### Clone o repositório:
+
+exemplo:
+
+* git bash
+  ```sh
+  git clone https://github.com/nandinwp/ASP.NET-Core-web-app-Razor---Age-Article.git
+  ```
+
+### Navegue até o diretório do projeto:
+
+ ```sh
+  cd ASP.NET-Core-web-app-Razor---Age-Article
+  ```
+
+### Restaure as dependências:
+* No terminal do visual studio
+
+ ```sh
+  dotnet restore
+  ```
+
+### Execute as migrações para configurar o banco de dados:
+
+* No terminal do visual studio
+
+ ```sh
+  dotnet ef database update
+  ```
+
+### Inicie a aplicação:
+
+* No terminal do visual studio
+
+ ```sh
+  dotnet run
+  ```
