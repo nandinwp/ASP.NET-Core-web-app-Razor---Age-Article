@@ -1,0 +1,84 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Vote sobre";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Age Article</h1>
+    <p>A Influência da Idade no Respeito: Aceitando Conselhos de Gerações Mais Jovens</p>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-body p-5">
+                    <h4 class="card-title text-center mb-4">
+                        Quando se trata de tomar decisões importantes ou resolver um dilema pessoal, até que ponto a idade de quem dá o conselho afeta sua disposição em ouvir? Se você estivesse em uma situação delicada, consideraria seriamente o conselho de alguém mais jovem que você, mesmo que essa pessoa tivesse menos experiência de vida?
+                    </h4>
+                       <form method="post">
+                            <div class="form-group mb-3">
+                                <label for="age">Sua Idade:</label>
+                                <input type="number" class="form-control rounded-pill" id="age" name="age" value="@Model.Age" min="1" max="120" required>
+                                @if (ModelState["age"]?.Errors.Count > 0)
+                                {
+                                    <span class="text-danger">Informe sua idade.</span>
+                                }
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="agree">Você concorda com a afirmação acima?</label>
+                                <select class="form-control rounded-pill" id="agree" name="agree" required>
+                                    <option value="">Selecione</option>
+                                                        <option value="Sim" selected="@Model.Agree == " Sim"">Sim</option>
+                                                        <option value="Não" selected="@Model.Agree == " Não"">Não</option>
+                                </select>
+                                @if (ModelState["agree"]?.Errors.Count > 0)
+                                {
+                                    <span class="text-danger">Selecione uma opção.</span>
+                                }
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="comment">Argumente:</label>
+                                <textarea class="form-control rounded-3" id="comment" name="comment" rows="3">@Model.Comment</textarea>
+                            </div>                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5">Votar</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup de sucesso -->
+@if (Model.IsSuccess)
+{
+    <div class="modal fade show" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" style="display: block; background: rgba(0,0,0,0.5);">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Sucesso</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Obrigado por participar da pesquisa!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='@Url.Page("/Index")'">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @if (Model.IsSuccess)
+    {
+        <script>
+            $(document).ready(function () {
+                $('#successModal').modal('show');
+            });
+        </script>
+    }
+}
